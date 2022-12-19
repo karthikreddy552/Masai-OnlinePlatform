@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp Page</title>
+    <script src="https://kit.fontawesome.com/ce16d2eaf5.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .parent {
+            width: 30%;
+            margin: auto;
+        }
+
+        .logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            padding: 10px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            margin: 10px 0px;
+            padding: 8px;
+            border-radius: 7px;
+            border: 1px solid rgb(107, 100, 100);
+            letter-spacing: 1px;
+        }
+
+        form p {
+            font-size: 20px;
+        }
+
+        #toggleBtn {
+            cursor: pointer;
+        }
+
+        .signUp {
+            width: 100%;
+            padding: 8px 0px;
+            letter-spacing: 1px;
+            border-radius: 8px;
+            border: 1px solid rgb(107, 100, 100);
+            cursor: pointer;
+            margin-bottom: 15px;
+            color: white;
+            background-color: rgb(94, 94, 242);
+        }
+
+        .already {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <img src="https://sso.masaischool.com/brand_dark.svg" alt="masai logo" class="logo">
+        <div class="container">
+            <h2 class="heading">Sign Up</h2>
+            <form action="" onsubmit="submitDetails()">
+                <div class="name">
+                    <p class="fullName">Full Name</p>
+                    <input type="text" id="enterName" placeholder="Enter your Name" required>
+                </div>
+                <div class="batch">
+                    <p class="batchStd">For Student *</p>
+                    <select name="" id="batchName">
+                        <option value="">Select your Batch</option>
+                        <option value="PT-WEB-01">PT-WEB-01</option>
+                        <option value="PT-WEB-02">PT-WEB-02</option>
+                        <option value="PT-WEB-03">PT-WEB-03</option>
+                        <option value="PT-WEB-04">PT-WEB-04</option>
+                        <option value="PT-WEB-05">PT-WEB-05</option>
+                        <option value="PT-WEB-06">PT-WEB-06</option>
+                        <option value="PT-WEB-07">PT-WEB-07</option>
+                        <option value="PT-WEB-08">PT-WEB-08</option>
+                        <option value="PT-WEB-09">PT-WEB-09</option>
+                        <option value="PT-WEB-10">PT-WEB-10</option>
+                        <option value="PT-WEB-11">PT-WEB-11</option>
+                        <option value="PT-WEB-12">PT-WEB-12</option>
+                    </select>
+                </div>
+                <div class="course">
+                    <p class="courseStd">For Student *</p>
+                    <select name="" id="courseName">
+                        <option value="">Select your Course</option>
+                        <option value="Front end Web-Development">Front end Web-Development</option>
+                        <option value="Back end Web-Development">Back end Web-Development</option>
+                        <option value="Full Stack Web-Development">Full Stack Web-Development</option>
+                        <option value="Data Analyst">Data Analyst</option>
+                    </select>
+                </div>
+                <div class="unit">
+                    <p class="unitStd">For Student *</p>
+                    <select name="" id="unitName">
+                        <option value="">Select your Unit</option>
+                        <option value="Unit-01">Unit-01</option>
+                        <option value="Unit-02">Unit-02</option>
+                        <option value="Unit-03">Unit-03</option>
+                        <option value="Unit-04">Unit-04</option>
+                        <option value="Unit-05">Unit-05</option>
+                        <option value="Unit-06">Unit-06</option>
+                        <option value="Unit-07">Unit-07</option>
+                    </select>
+                </div>
+                <div class="email">
+                    <p class="emailAll">Email</p>
+                    <input type="email" id="emailName" placeholder="Enter your Email" required>
+                </div>
+                <div class="password">
+                    <p class="passwordAll">Password</p>
+                    <input type="password" id="passwordName" placeholder="Enter your Password" required><span
+                        style="margin-left: -35px;"><i class="far fa-eye" id="toggleBtn"></i></span>
+                </div>
+                <div class="cand_std">
+                    <p class="cand_stdAll">User</p>
+                    <select name="" id="cand_stdName" required>
+                        <option value="">Select User</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Student">Student</option>
+                    </select>
+                </div>
+                <button class="signUp">SIGN UP</button>
+            </form>
+            <p class="already">Already have an account? <a href="./signin.html" target="_self">Sign In</a></p>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    const togPass = document.getElementById("toggleBtn");
+    const pass = document.getElementById("passwordName");
+    togPass.addEventListener("click", (e) => {
+        const format = pass.getAttribute("type") === "password" ? "text" : "password";
+        pass.setAttribute("type", format);
+    })
+
+    function student(n, b, c, u, e, p) {
+        this.name = n;
+        this.batch = b;
+        this.course = c;
+        this.unit = u;
+        this.email = e;
+        this.password = p;
+        this.flag = "false";
+    }
+    function admin(n, e, p) {
+        this.name = n;
+        this.email = e;
+        this.password = p;
+        this.flag = "true";
+    }
+    function submitDetails() {
+        event.preventDefault();
+        let name = document.getElementById("enterName").value;
+        let batch = document.getElementById("batchName").value || "";
+        let course = document.getElementById("courseName").value || "";
+        let unit = document.getElementById("unitName").value || "";
+        let email = document.getElementById("emailName").value;
+        let password = document.getElementById("passwordName").value;
+        let user = document.getElementById("cand_stdName").value;
+
+        document.getElementById("enterName").value = "";
+        document.getElementById("batchName").value = "";
+        document.getElementById("courseName").value = "";
+        document.getElementById("unitName").value = "";
+        document.getElementById("emailName").value = "";
+        document.getElementById("passwordName").value = "";
+        document.getElementById("cand_stdName").value = "";
+
+        if ((user === "Admin") && (batch === "" || course === "" || unit === "")) {
+            let admin1 = new admin(name, email, password);
+            let adminArr = JSON.parse(localStorage.getItem("allDetails")) || [];
+            adminArr.push(admin1);
+            localStorage.setItem("allDetails", JSON.stringify(adminArr));
+        }
+
+        else if (user === "Student") {
+            let student1 = new student(name, batch, course, unit, email, password);
+            let stdArr = JSON.parse(localStorage.getItem("allDetails")) || [];
+            stdArr.push(student1);
+            localStorage.setItem("allDetails", JSON.stringify(stdArr));
+        }
+        alert("Account is Created..!");
+        window.open("./signin.html", "_self");
+    }
+
+</script>

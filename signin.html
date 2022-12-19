@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In Page</title>
+    <script src="https://kit.fontawesome.com/ce16d2eaf5.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .parent {
+            width: 30%;
+            margin: auto;
+        }
+
+        .logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            padding: 50px 10px;
+            margin: 40px 0px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        input {
+            width: 100%;
+            margin: 10px 0px;
+            padding: 10px;
+            border-radius: 7px;
+            border: 1px solid rgb(107, 100, 100);
+            letter-spacing: 1px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        form p {
+            font-size: 20px;
+        }
+
+        #toggleBtn {
+            cursor: pointer;
+        }
+
+        .signIn {
+            width: 100%;
+            padding: 8px 0px;
+            letter-spacing: 1px;
+            border-radius: 8px;
+            border: 1px solid rgb(107, 100, 100);
+            cursor: pointer;
+            margin-bottom: 25px;
+            color: white;
+            background-color: rgb(94, 94, 242);
+        }
+
+        .already {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <img src="https://sso.masaischool.com/brand_dark.svg" alt="masai logo" class="logo">
+        <div class="container">
+            <h2 class="heading">Sign In</h2>
+            <form action="" onsubmit="submitDetails()">
+                <div class="email">
+                    <p class="emailAll">Email</p>
+                    <input type="email" id="emailName" placeholder="Enter your Email" required>
+                </div>
+                <div class="password">
+                    <p class="passwordAll">Password</p>
+                    <input type="password" id="passwordName" placeholder="Enter your Password" required><span
+                        style="margin-left: -35px;"><i class="far fa-eye" id="toggleBtn"></i></span>
+                </div>
+                <button class="signIn">SIGN In</button>
+            </form>
+            <p class="already">Don't hava an account? <a href="./index.html" target="_self">Sign Up</a></p>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    const togPass = document.getElementById("toggleBtn");
+    const pass = document.getElementById("passwordName");
+    togPass.addEventListener("click", (e) => {
+        const format = pass.getAttribute("type") === "password" ? "text" : "password";
+        pass.setAttribute("type", format);
+    })
+
+    let adminArr = JSON.parse(localStorage.getItem("allDetails")) || [];
+    function submitDetails() {
+        event.preventDefault();
+        let checkEmail = document.getElementById("emailName").value;
+        let checkPassword = document.getElementById("passwordName").value;
+
+        let flag = "false";
+        let loginedFlag = false;
+        let userEmail = "";
+        adminArr.map(ele => {
+            if (ele.email === checkEmail && ele.password === checkPassword) {
+                loginedFlag = true;
+                userEmail = ele.email;
+                if (ele.flag === "true") flag = "true";
+                else flag = "false";
+            }
+        })
+        if (flag === "false") localStorage.setItem("flag", "false");
+        else localStorage.setItem("flag", "true");
+        if (loginedFlag) {
+            localStorage.setItem("userEmail", userEmail);
+            alert("Logined Successfully..!");
+            window.open("./dashBoard.html", "_blank");
+        } else alert("Invalid Credentials!");
+
+        document.getElementById("passwordName").value = "";
+    }
+</script>
